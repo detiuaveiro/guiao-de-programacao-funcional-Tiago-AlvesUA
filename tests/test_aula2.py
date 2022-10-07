@@ -38,17 +38,26 @@ def test_ex5():
 def test_quantificador_universal(mock_qt_uni):
     assert mock_qt_uni([11,12,13,14], lambda n: n > 10)
 
+#Exercicio 4.8
+@mock.patch('aula2.subconjunto', side_effect = aula2.subconjunto)
+def test_subconjunto(mock_subconjunto):
+    assert mock_subconjunto([11,12,13,14], [11,12,13,14,15,16])
+    assert mock_subconjunto([11,12,13,14], [10,11,12,13,14])
+    assert mock_subconjunto([11,12,13,14], [10,11,12,13,14,15])
+    assert not mock_subconjunto([11,12,33,14], [10,11,12,13,14,15])
+
+
 #Exercicio 4.9
-@mock.patch('aula2.ordem', side_effect = aula2.ordem)
-def test_ordem(mock_ordem):
-    assert mock_ordem([1,-1,4,0], lambda x,y: x < y) == -1
-    assert mock_ordem([1,-1,4,0], lambda x,y: x > y) == 4
+@mock.patch('aula2.menor_ordem', side_effect = aula2.menor_ordem)
+def test_menor_ordem(mock_menor_ordem):
+    assert mock_menor_ordem([1,-1,4,0], lambda x,y: x < y) == -1
+    assert mock_menor_ordem([1,-1,4,0], lambda x,y: x > y) == 4
 
 #Exercicio 4.10
-@mock.patch('aula2.filtrar_ordem', side_effect = aula2.filtrar_ordem)
-def test_filtrar_ordem(mock_filtrar_ordem):
-    assert mock_filtrar_ordem([1,-1,4,0], lambda x, y: x < y) == (-1, [1,4,0])
-    assert mock_filtrar_ordem([1,-1,4,0], lambda x, y: x > y) == (4, [1,-1,0])
+@mock.patch('aula2.menor_e_resto_ordem', side_effect = aula2.menor_e_resto_ordem)
+def test_menor_e_resto_ordem(mock_menor_e_resto_ordem):
+    assert mock_menor_e_resto_ordem([1,-1,4,0], lambda x, y: x < y) == (-1, [1,4,0])
+    assert mock_menor_e_resto_ordem([1,-1,4,0], lambda x, y: x > y) == (4, [1,-1,0])
 
 #Exercicio 5.2a
 @mock.patch('aula2.ordenar_seleccao', side_effect = aula2.ordenar_seleccao)
