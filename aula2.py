@@ -1,11 +1,17 @@
 #Exercicio 4.1
-impar = None
+impar = lambda x : x % 2 != 0
+print(impar(3))
+print(impar(4))
 
 #Exercicio 4.2
-positivo = None
+positivo = lambda x : x > 0 and x != 0
+print(positivo(3))
+print(positivo(-4))
 
 #Exercicio 4.3
-comparar_modulo = None
+comparar_modulo = lambda a, b: abs(a) < abs(b)
+print(comparar_modulo(-4, 2))
+print(comparar_modulo(3, -4))
 
 #Exercicio 4.4
 cart2pol = None
